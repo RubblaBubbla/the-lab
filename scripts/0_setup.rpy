@@ -5,7 +5,7 @@ define gui.interface_text_font =    "TitilliumWeb-Regular.ttf"
 
 
 # Set up the characters
-define m =          Character("Mother", color="red")
+define m =          Character("Mother", color="#880808")
 define e =          Character("Eva", color="#abeae5")
 define ru =         Character("Rudy", color="#229900")
 define re =         Character("René", color="#c04141")
@@ -14,7 +14,7 @@ define s =          Character("Sylvia", color="#fff2cc")
 
 define unknown =    Character("???")
 
-define u_m =        Character("???", color="red")
+define u_m =        Character("???", color="#880808")
 define u_e =        Character("???", color="#abeae5")
 define u_ru =       Character("???", color="#229900")
 define u_re =       Character("???", color="#c04141")
