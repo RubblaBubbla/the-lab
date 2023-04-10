@@ -20,11 +20,11 @@ screen meet_and_greet():
         idle "full_body.png"
         hover "full_body.png"
         if (not met_tau):
-             action Jump("meet_tau")
+             action Jump("meet_and_greet.meet_tau")
         elif (met_tau == 1):
-            action Jump("greet_tau")
+            action Jump("meet_and_greet.greet_tau")
         else:
-            action Jump("greet_tau_2")
+            action Jump("meet_and_greet.greet_tau_2")
 
     # Sylvia
     imagebutton:
@@ -35,11 +35,11 @@ screen meet_and_greet():
         idle "full_body.png"
         hover "full_body.png"
         if (not met_sylvia):
-             action Jump("meet_sylvia")
+             action Jump("meet_and_greet.meet_sylvia")
         elif (met_sylvia == 1):
-            action Jump("greet_sylvia")
+            action Jump("meet_and_greet.greet_sylvia")
         else:
-            action Jump("greet_sylvia_2")
+            action Jump("meet_and_greet.greet_sylvia_2")
 
     # Rudy
     imagebutton:
@@ -50,11 +50,11 @@ screen meet_and_greet():
         idle "full_body.png"
         hover "full_body.png"
         if (not met_rudy):
-             action Jump("meet_rudy")
+             action Jump("meet_and_greet.meet_rudy")
         elif (met_rudy == 1):
-            action Jump("greet_rudy")
+            action Jump("meet_and_greet.greet_rudy")
         else:
-            action Jump("greet_rudy_2")
+            action Jump("meet_and_greet.greet_rudy_2")
 
     # Rene
     # imagebutton:
@@ -65,11 +65,11 @@ screen meet_and_greet():
     #     idle "full_body.png"
     #     hover "full_body.png"
     #     if (not met_rene):
-    #          action Jump("meet_rene")
+    #          action Jump("meet_and_greet.meet_rene")
     #     elif (met_rene == 1):
-    #         action Jump("greet_rene")
+    #         action Jump("meet_and_greet.greet_rene")
     #     else:
-    #         action Jump("greet_rene_2")
+    #         action Jump("meet_and_greet.greet_rene_2")
 
     # Mother
     imagebutton:
@@ -80,11 +80,11 @@ screen meet_and_greet():
         idle "full_body.png"
         hover "full_body.png"
         if (not seen_mother):
-             action Jump("check_mother")
+             action Jump("meet_and_greet.check_mother")
         elif (seen_mother == 1):
-            action Jump("check_mother_2")
+            action Jump("meet_and_greet.check_mother_2")
         else:
-            action Jump("check_mother_3")
+            action Jump("meet_and_greet.check_mother_3")
 
 
 # Scene that calls meet and greet screen
@@ -105,7 +105,7 @@ label meet_and_greet:
 
 
 # Tau introduction
-label meet_tau:
+label .meet_tau:
     e "Hi! It’s nice to meet you."
     
     u_t "…"
@@ -141,7 +141,7 @@ label meet_tau:
     jump meet_and_greet
 
 # Tau follow up 1
-label greet_tau:
+label .greet_tau:
     e "{i}Are they playing with the water…?{/i}"
     
     e "Hi again! Did you find out anything about the tubes?"
@@ -174,14 +174,14 @@ label greet_tau:
 
 
 # Tau follow up final
-label greet_tau_2:
+label .greet_tau_2:
     e "{i}Interrupting their bath would be kind of rude…{/i}"
 
     jump meet_and_greet
 
 
 # Rudy introduction
-label meet_rudy:
+label .meet_rudy:
     e "It sounds to me like you know these people."
     
     e "Would you please explain?"
@@ -202,7 +202,7 @@ label meet_rudy:
 
 
 # Rudy follow up 1
-label greet_rudy:
+label .greet_rudy:
     u_ru "…"
     
     u_ru "… Have you realized it yet?"
@@ -219,7 +219,7 @@ label greet_rudy:
 
 
 # Rudy follow up final
-label greet_rudy_2:
+label .greet_rudy_2:
     e "{i}I still have no idea what’s going on. And he said I need to figure it out on my own…{/i}"
 
     jump meet_and_greet
@@ -227,7 +227,7 @@ label greet_rudy_2:
 
 
 # Sylvia introduction
-label meet_sylvia:
+label .meet_sylvia:
     e "{i}She’s so elegant…{/i}"
     
     e "Hello!"
@@ -256,7 +256,7 @@ label meet_sylvia:
 
 
 # Sylvia follow up 1
-label greet_sylvia:
+label .greet_sylvia:
     e "{i}I don’t wanna pry, but I’m too curious…{/i}"
     
     e "What’s your hunch? Maybe I can help you figure things out."
@@ -281,7 +281,7 @@ label greet_sylvia:
 
 
 # Sylvia follow up final
-label greet_sylvia_2:
+label .greet_sylvia_2:
     e "{i}She looks like she’s in deep thought…{/i}"
    
     e "{i}I shouldn’t annoy her more than I already have.{/i}"
@@ -290,7 +290,7 @@ label greet_sylvia_2:
 
 
 # Mother check 1
-label check_mother:
+label .check_mother:
     #Close up of figure in distance
     
     e "{i}There’s a person there…{/i}"
@@ -317,7 +317,7 @@ label check_mother:
 
 
 # Mother check 2
-label check_mother_2:
+label .check_mother_2:
     e "{i}That person is still staring down at us…{/i}"
     
     e "{i}No. I should assume the best of them! Maybe this place only *looks* scary!{/i}"
@@ -328,7 +328,7 @@ label check_mother_2:
 
 
 # Mother check final
-label check_mother_3:
+label .check_mother_3:
     e "..."
 
     jump meet_and_greet

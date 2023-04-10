@@ -36,9 +36,9 @@ screen partner_choosing():
         idle "full_body.png"
         hover "full_body.png"
         if (not spoke_with_tau):
-             action Jump("speak_with_tau")
+             action Jump("partner_choosing.speak_with_tau")
         else:
-            action Jump("ask_tau")
+            action Jump("partner_choosing.ask_tau")
 
     # Sylvia
     imagebutton:
@@ -49,9 +49,9 @@ screen partner_choosing():
         idle "full_body.png"
         hover "full_body.png"
         if (not spoke_with_sylvia):
-             action Jump("speak_with_sylvia")
+             action Jump("partner_choosing.speak_with_sylvia")
         else:
-            action Jump("ask_sylvia")
+            action Jump("partner_choosing.ask_sylvia")
 
     # Rudy
     imagebutton:
@@ -62,9 +62,9 @@ screen partner_choosing():
         idle "full_body.png"
         hover "full_body.png"
         if (not spoke_with_rudy):
-             action Jump("speak_with_rudy")
+             action Jump("partner_choosing.speak_with_rudy")
         else:
-            action Jump("ask_rudy")
+            action Jump("partner_choosing.ask_rudy")
 
     # Rene
     imagebutton:
@@ -75,9 +75,9 @@ screen partner_choosing():
         idle "full_body.png"
         hover "full_body.png"
         if (not spoke_with_rene):
-             action Jump("speak_with_rene")
+             action Jump("partner_choosing.speak_with_rene")
         else:
-            action Jump("ask_rene")
+            action Jump("partner_choosing.ask_rene")
 
 
 label partner_choosing:
@@ -86,7 +86,7 @@ label partner_choosing:
     call screen partner_choosing
 
 
-label speak_with_rudy:
+label .speak_with_rudy:
     $ spoke_with_rudy = True
 
     e "What do you think of this?"
@@ -101,160 +101,160 @@ label speak_with_rudy:
 
     menu:
         "Yes. Let's be partners.":
-            jump rudy_yes 
+            jump .rudy_yes 
 
         "I need to think about it more.":
-            jump rudy_no
+            jump .rudy_no
 
 
-label ask_rudy:
+label .ask_rudy:
     # Show Rudy sprite
 
     e "Should I ask Rudy to be my partner?"
 
     menu:
         "Will you be my partner, Rudy?":
-            jump rudy_yes 
+            jump .rudy_yes 
 
         "I need to think about it more.":
             jump partner_choosing
 
 
-label rudy_yes:
+label .rudy_yes:
     $ persistent.prologue_partner = "rudy"
 
     ru "Okay. I expect you'll give your best."
 
-    jump conclude_choosing
+    jump .conclude_choosing
 
 
-label rudy_no:
+label .rudy_no:
     ru "Come back if you make a decision."
 
     jump partner_choosing
 
 
-label speak_with_tau:
+label .speak_with_tau:
     $ spoke_with_tau = True
     
     # Dialogue
 
     menu:
         "Yes. Let's be partners.":
-            jump tau_yes 
+            jump .tau_yes 
 
         "I need to think about it more.":
-            jump tau_no
+            jump .tau_no
 
 
-label ask_tau:
+label .ask_tau:
     # Show Tau sprite
 
     e "Should I ask Tau to be my partner?"
 
     menu:
         "Will you be my partner, Tau?":
-            jump tau_yes 
+            jump .tau_yes 
 
         "I need to think about it more.":
             jump partner_choosing
 
 
-label tau_yes:
+label .tau_yes:
     $ persistent.prologue_partner = "tau"
 
     # Tau response
 
-    jump conclude_choosing
+    jump .conclude_choosing
 
 
-label tau_no:
+label .tau_no:
     # Tau response
 
     jump partner_choosing
 
 
-label speak_with_sylvia:
+label .speak_with_sylvia:
     $ spoke_with_sylvia = True
 
     # Dialogue
 
     menu:
         "Yes. Let's be partners.":
-            jump sylvia_yes 
+            jump .sylvia_yes 
 
         "I need to think about it more.":
-            jump sylvia_no
+            jump .sylvia_no
 
 
-label ask_sylvia:
+label .ask_sylvia:
     # Show Sylvia sprite
 
     e "Should I ask Sylvia to be my partner?"
 
     menu:
         "Will you be my partner, Sylvia?":
-            jump sylvia_yes 
+            jump .sylvia_yes 
 
         "I need to think about it more.":
             jump partner_choosing
 
 
-label sylvia_yes:
+label .sylvia_yes:
     $ persistent.prologue_partner = "sylvia"
 
     # Sylvia response
 
-    jump conclude_choosing
+    jump .conclude_choosing
 
 
-label sylvia_no:
+label .sylvia_no:
     # Sylvia response
 
     jump partner_choosing
 
 
-label speak_with_rene:
+label .speak_with_rene:
     $ spoke_with_rene = True
 
     # Dialogue
 
     menu:
         "Yes. Let's be partners.":
-            jump rene_yes 
+            jump .rene_yes 
 
         "I need to think about it more.":
-            jump rene_no
+            jump .rene_no
 
 
-label ask_rene:
+label .ask_rene:
     # Show Rene sprite
 
     e "Should I ask René to be my partner?"
 
     menu:
         "Will you be my partner, René?":
-            jump rene_yes 
+            jump .rene_yes 
 
         "I need to think about it more.":
             jump partner_choosing
 
 
-label rene_yes:
+label .rene_yes:
     $ persistent.prologue_partner = "rene"
 
     # Rene response
 
-    jump conclude_choosing
+    jump .conclude_choosing
 
 
-label rene_no:
+label .rene_no:
     # Rene response
 
     jump partner_choosing
 
 
-label conclude_choosing:
+label .conclude_choosing:
     "Choosing concluded."
 
     return
