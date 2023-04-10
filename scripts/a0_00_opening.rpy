@@ -55,13 +55,13 @@ label wake_up:
     scene bg white
     with wake_up_fade
 
-    play sound "audio/airlock.ogg" volume 0.6
+    play sound "audio/airlock.ogg" volume 0.4
     
     # Screen flash white
     scene bg central_area
     with white_flash
 
-    play sound "audio/water_spill.ogg" volume 0.5 
+    play sound "audio/water_spill.ogg" volume 0.4 
 
     e "Guh..."
 
@@ -148,13 +148,13 @@ label wake_up:
     u_ru "Don’t ask stupid questions like th-{p=0.4}{nw}"
 
     # Rudy is cut off by the sound of three more airlocks opening and spilling water
-    play sound "audio/airlock.ogg" volume 0.6
-    pause 0.5
     play sound "audio/airlock.ogg" volume 0.5
     pause 0.5
     play sound "audio/airlock.ogg" volume 0.4
     pause 0.5
-    play sound "audio/water_spill.ogg" volume 0.6
+    play sound "audio/airlock.ogg" volume 0.3
+    pause 0.5
+    play sound "audio/water_spill.ogg" volume 0.5
     
     e "{i}Oh! Three more people…{/i}"
     
