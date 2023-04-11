@@ -92,6 +92,8 @@ define meet_and_greet_fade = Fade(1, 0, 1)
 label meet_and_greet:
     # Go to mother's introduction if all have been met
     if (met_rudy > 1 and met_tau > 1 and met_sylvia > 1):
+        stop music fadeout 2.0
+        
         jump mother_introduction # a0_02
 
     scene bg central_area

@@ -9,6 +9,8 @@ label eva_opening:
     scene bg eva_bedroom
     with fade_2s
 
+    play music "audio/elementary.ogg" fadein 3.0 volume 0.5
+
     # Start some calming nighttime music
 
     unknown "Sleep well, Eva."
@@ -21,10 +23,15 @@ label eva_opening:
 
     e "{i}*Yawn…*{/i}"
 
+    stop music fadeout 2.0
+
     e "{i}Of course, I'd never forget…{/i}"
+
+    pause 2.5
 
     # Shuffling sound here?
     # Start new music?
+    play music "audio/falling_star.ogg" volume 0.4 
     
     e "Precious Father, I pray that as I lie down and sleep, I will do so in peace."
    
@@ -41,8 +48,7 @@ label eva_opening:
     # The hand is fully visible and ominous now.
     
     e "Amen."
-
-    # Music fades
+    stop music fadeout 3.0
 
     jump wake_up
     return
@@ -62,6 +68,8 @@ label wake_up:
     with white_flash
 
     play sound "audio/water_spill.ogg" volume 0.4 
+    
+    play music "audio/hollow_wind.ogg" fadein 1.5 volume 0.8
 
     e "Guh..."
 
@@ -93,7 +101,7 @@ label wake_up:
     
     e "I WANT TO FLY OUT OF HERE!!!" with vpunch
 
-    voice "audio/ding.ogg"
+    stop music
     u_ru "Pipe down, will you?"
     
     e "Huh?"
@@ -103,9 +111,9 @@ label wake_up:
     
     voice "audio/ding.ogg"
     e "Oh, I’m sorry! I didn’t see you there!" 
-    
+
     u_ru "Then you’d better stay alert or make peace with the consequences."
-    
+
     e "What do you mean?"
     
     u_ru "Don’t play dumb. You know the ropes."
@@ -171,6 +179,8 @@ label wake_up:
     with blackout_fade
     # Fade back in
     
+    play music "audio/lofi_hip_hop_beat_cut.ogg" volume 0.3
+
     # Sylvia sprite appears, looking very weirded out
     
     u_s "Mmh. Why can’t I…?"
