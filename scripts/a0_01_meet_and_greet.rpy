@@ -57,19 +57,19 @@ screen meet_and_greet():
             action Jump("meet_and_greet.greet_rudy_2")
 
     # Rene
-    # imagebutton:
-    #     xanchor 0.5
-    #     yanchor 0.5
-    #     xpos 0.25
-    #     ypos 0.75
-    #     idle "full_body.png"
-    #     hover "full_body.png"
-    #     if (not met_rene):
-    #          action Jump("meet_and_greet.meet_rene")
-    #     elif (met_rene == 1):
-    #         action Jump("meet_and_greet.greet_rene")
-    #     else:
-    #         action Jump("meet_and_greet.greet_rene_2")
+    imagebutton:
+        xanchor 0.5
+        yanchor 0.5
+        xpos 0.25
+        ypos 0.75
+        idle "full_body.png"
+        hover "full_body.png"
+        if (not met_rene):
+             action Jump("meet_and_greet.meet_rene")
+        elif (met_rene == 1):
+            action Jump("meet_and_greet.greet_rene")
+        else:
+            action Jump("meet_and_greet.greet_rene_2")
 
     # Mother
     imagebutton:
@@ -91,9 +91,9 @@ screen meet_and_greet():
 define meet_and_greet_fade = Fade(1, 0, 1)
 label meet_and_greet:
     # Go to mother's introduction if all have been met
-    if (met_rudy > 1 and met_tau > 1 and met_sylvia > 1):
+    if (met_rudy > 1 and met_tau > 1 and met_sylvia > 1 and met_rene > 1):
         stop music fadeout 2.0
-        
+
         jump mother_introduction # a0_02
 
     scene bg central_area
@@ -290,6 +290,64 @@ label .greet_sylvia_2:
 
     jump meet_and_greet
 
+
+# Rene introduction
+label .meet_rene:
+    e "{i}This guy looks just like the first one I met. Are they siblings?{/i}"
+    
+    u_re "Hey Eva, how are you doing?"
+    
+    e "Wait, how do you know my name?!"
+    
+    u_re "The same reason I know your favorite food is plain bread, silly!"
+    
+    e "{i}Uh. That’s not quite it. I really prefer it with strawberry jam.{/i}"
+    
+    u_re "Especially with strawberry jam!"
+    
+    e "Haha, yeah. Silly me!"
+    
+    e "{i}Dear God, please help me. I don’t want anyone reading my mind but you.{/i}"
+
+    $ met_rene = 1
+
+    jump meet_and_greet
+
+
+# Second time talking to Rene
+label .greet_rene:
+    e "{i}There is no way he can actually read my mind, right?{/i}"
+    
+    e "{i}That must’ve been a coincidence.{/i}"
+    
+    e "{i}Let me try again.{/i}"
+
+    e "Hey."
+    
+    u_re "Yo."
+    
+    e "Can you tell me what I’m thinking about right now?"
+    
+    e "{i}Seven. Seven. Seven.{/i}"
+    
+    u_re "Uhh… I don’t really know."
+    
+    e "Haha. I knew it!"
+    
+    u_re "Knew what?"
+    
+    e "Nothing…"
+
+    $ met_rene = 2
+
+    jump meet_and_greet
+
+
+# Rene follow up final
+label .greet_rene_2:
+    e "{i}CAN’T read my mind.{/i}"
+
+    jump meet_and_greet
 
 # Mother check 1
 label .check_mother:
