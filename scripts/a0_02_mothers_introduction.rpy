@@ -92,12 +92,49 @@ label mother_introduction:
 
     e "{i}What...?{/i}"
 
-    m "I see you are all still confused. I will grant all of you an additional question if you require it, after which we shall begin posthaste."
+    m "I see you are all still confused. I will grant all of you a question if you require it, after which we shall begin posthaste."
 
-    # Everyone raises their hand. The player can click on every character and mother herself to see their question. The player must click on everyone at least once to proceed.
+    e "{i}Something is really, really bugging me... but I'll let the others go first. Maybe their questions are more important than mine.{/i}"
 
-# Happens when you click on Mother during the questions segment
-label eva_intro_question:
+    s "Mother."
+
+    m "Yes?"
+
+    s "Is this really happening?"
+
+    m "That question is too ambiguous for me to answer."
+
+    s "I mean--{p=0.5}{nw}"
+
+    m "Only one question each. Next."
+
+    # Sylvia looks annoyed, then fades out. René fades in.
+
+    re "Can I ask a question?"
+
+    m "No. You already asked one."
+
+    # René looks saddened.
+
+    re "Oh. Ok."
+
+    # Rene fades out.
+
+    m "Next."
+
+    # Rudy fades in.
+
+    ru "I assume this is some sort of test. Are we being graded already?"
+
+    m "Yes."
+
+    m "Next."
+
+    e "{i}I can't wait anymore...{/i}"
+
+    e "{i}I'm sorry, but these questions were all useless.{/i}"
+
+    e "{i}I need to know something.{/i}"
 
     e "Can I please ask a question...?"
 
@@ -121,7 +158,7 @@ label eva_intro_question:
 
     # René and Rudy appear. The first looks concerned, the latter looks irritated
 
-    re "Eva, what's getting into you?"
+    re "Eva, what's gotten into you?"
 
     ru "I've never seen you so eager to shoot yourself in the leg."
 
@@ -161,10 +198,16 @@ label eva_intro_question:
 
     e "{i}Am I really missing something?{/i}"
 
-label eva_intro_question_2:
+    m "Almost everyone has asked a question so far. Only Tau is missing."
 
-    e "{i}She is NOT my mom.{/i}"
+    m "Do you have anything to ask?"
 
-    e "{i}But... I should still call her Mother.{/i}"
+    t "Rayman seta! Is it really always half?!"
 
-    e "{i}It'd be a good idea to keep my head low for now...{/i}"
+    m "Rayman... seta?"
+
+    m "Ah. I understand."
+
+    m "I may tell you later, the explanation is quite long-winded."
+
+    t "Yay!!!"
