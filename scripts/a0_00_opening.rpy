@@ -112,6 +112,7 @@ label wake_up:
     voice "audio/ding.ogg"
     e "Oh, I’m sorry! I didn’t see you there!" 
 
+    play music "audio/hollow_wind.ogg" fadein 1.5 volume 0.8
     u_ru "Then you’d better stay alert or make peace with the consequences."
 
     e "What do you mean?"
@@ -171,6 +172,8 @@ label wake_up:
     # Rudy walks off, but one last dialogue appears from him from off-screen
     
     u_ru "Your clothes are in the chest next to your chambers, guys."
+    
+    stop music
     
     e "I’m not looking!"
     
