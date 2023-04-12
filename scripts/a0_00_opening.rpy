@@ -1,5 +1,9 @@
 # Entry point, jumps to first scene
 label start:
+    # Manage camera
+    camera:
+        perspective True
+
     jump eva_opening
 
 
@@ -174,7 +178,7 @@ label wake_up:
     u_ru "Your clothes are in the chest next to your chambers, guys."
     
     stop music
-    
+
     e "I’m not looking!"
     
     # Shuffling noises as the screen goes dark.
