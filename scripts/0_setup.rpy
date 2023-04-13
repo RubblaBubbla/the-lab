@@ -1,10 +1,21 @@
-﻿# Set default font
+﻿#--------------------------------------------------------------------
+# Set defaults
+#--------------------------------------------------------------------
 define gui.text_font =              "TitilliumWeb-Regular.ttf"
 define gui.name_text_font =         "TitilliumWeb-Regular.ttf"
 define gui.interface_text_font =    "TitilliumWeb-Regular.ttf"
 
 
+#--------------------------------------------------------------------
+# Persistent initial values
+#--------------------------------------------------------------------
+init python:
+    persistent.prologue_partner = None
+
+
+#--------------------------------------------------------------------
 # Set up the characters
+#--------------------------------------------------------------------
 define m =          Character("Mother", color="#880808")
 define e =          Character("Eva", color="#abeae5")
 define ru =         Character("Rudy", color="#229900")
@@ -22,13 +33,17 @@ define u_t =        Character ("???", color="#a16ee7")
 define u_s =        Character("???", color="#fff2cc")
 
 
+#--------------------------------------------------------------------
 # Custom definitions
+#--------------------------------------------------------------------
 define fade_2s = Fade(2, 0, 2)
 define white_flash = Fade(0.25, 0, 0.65, color="#ffffff")
 define blackout_fade = Fade(0.5, 3, 0.5)
 
 
-# Transforms and styles
+#--------------------------------------------------------------------
+# Transforms
+#--------------------------------------------------------------------
 # Tilt character from start degrees (usually 0) to end degrees in time seconds
 transform tilt(start, end, time):
     subpixel True 
@@ -63,7 +78,3 @@ transform turn(start, end, time):
     linear time matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(0.0, end, 0.0)*OffsetMatrix(0.0, 0.0, 0.0) 
     pause time+0.1
     matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(0.0, end, 0.0)*OffsetMatrix(0.0, 0.0, 0.0) 
-
-# Persistent initial values
-init python:
-    persistent.prologue_partner = None
