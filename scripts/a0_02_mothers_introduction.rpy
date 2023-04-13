@@ -211,3 +211,42 @@ label mother_introduction:
     m "I may tell you later, the explanation is quite long-winded."
 
     t "Yay!!!"
+
+    m "Now that your questions have been answered..."
+
+    e "{i}She just gave me even more questions...{/i}"
+
+    m "...It is time to meet in person. You may join me at the Skylift."
+
+    m "You will find it as the centerpiece of the Central Shaft."
+
+    m "The floor in this room is wet, so take care not to slip on the way there."
+
+    # Mother can be seen walking off and disappearing from sight.
+
+    e "... She forgot to tell us where it is."
+
+    ru "The only one forgetting things here is you, Eva."
+
+    ru "The Skylift is just through the door on the right."
+
+    e "I don't..."
+
+    s "Hold up. I do not know any of the information you and René have, either."
+
+    s "Is there anything you want to tell us?"
+
+    re "There's two amnesiacs...?"
+
+    s "Perhaps Eva could be, but I'm not the type to forget things."
+
+    ru "Neither is Eva."
+
+    e "{i}I still have no idea of what's going on...{/i}"
+
+    e "{i}Rudy and René talk about me like they've known me for ages, but Sylvia seems to be in my same boat.{/i}"
+
+    e "{i}I wonder where Tau falls in for this. Maybe I'll ask them later.{/i}"
+
+    e "{i}Let's go to the Skylift for now.{/i}"
+
