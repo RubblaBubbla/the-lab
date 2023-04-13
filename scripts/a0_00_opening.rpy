@@ -1,5 +1,9 @@
 # Entry point, jumps to first scene
 label start:
+    # Manage camera
+    camera:
+        perspective True
+
     jump eva_opening
 
 
@@ -9,9 +13,8 @@ label eva_opening:
     scene bg eva_bedroom
     with fade_2s
 
+    # Calming nighttime music starts
     play music "audio/elementary.ogg" fadein 3.0 volume 0.5
-
-    # Start some calming nighttime music
 
     unknown "Sleep well, Eva."
 
@@ -107,9 +110,21 @@ label wake_up:
     e "Huh?"
     
     # Rudy’s sprite fades in. He’s not happy
-    pause 1.75
+    play sound "audio/ding.ogg"
+    show rudy neutral:
+        subpixel True
+
+        xanchor 0.5
+        yanchor 0.5
+
+        xpos 0.5
+        ypos 0.75
+
+        zoom 1.7
+
+        matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(-10.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    with dissolve
     
-    voice "audio/ding.ogg"
     e "Oh, I’m sorry! I didn’t see you there!" 
 
     play music "audio/hollow_wind.ogg" fadein 1.5 volume 0.8
@@ -117,8 +132,26 @@ label wake_up:
 
     e "What do you mean?"
     
+    # Rudy straightens
+    show rudy neutral:
+        subpixel True 
+        matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(-10.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0) 
+        linear 0.10 matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0) 
+    with Pause(0.20)
+    show rudy neutral:
+        matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0) 
+
     u_ru "Don’t play dumb. You know the ropes."
     
+    # Rudy turns away to make his point
+    show rudy neutral:
+        subpixel True 
+        matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0) 
+        linear 0.10 matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(0.0, -30.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0) 
+    with Pause(0.20)
+    show rudy neutral:
+        matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(0.0, -30.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0) 
+
     u_ru "And put some clothes on. You look indecent."
     
     voice "audio/sudden_interruption.ogg"
@@ -148,6 +181,17 @@ label wake_up:
     e "Okay. You can look now."
     
     # Rudy sprite returns
+    show rudy neutral:
+        subpixel True
+
+        xanchor 0.5
+        yanchor 0.5
+
+        xpos 0.5
+        ypos 0.75
+
+        zoom 1.7
+    with dissolve
     pause 1.5
     
     e "{i}What an embarrassing dream…{/i}"
@@ -174,7 +218,7 @@ label wake_up:
     u_ru "Your clothes are in the chest next to your chambers, guys."
     
     stop music
-    
+
     e "I’m not looking!"
     
     # Shuffling noises as the screen goes dark.
@@ -185,14 +229,43 @@ label wake_up:
     play music "audio/lofi_hip_hop_beat_cut.ogg" volume 0.3
 
     # Sylvia sprite appears, looking very weirded out
-    
+    show sylvia neutral:
+        xanchor 0.5
+        yanchor 0.5
+
+        xpos 0.5
+        ypos 0.75
+
+        zoom 1.2
+    with dissolve
+
     u_s "Mmh. Why can’t I…?"
     
-    # Sylvia sprite fades and Rene sprite appears. He’s in a better mood than most
-    
+    # Rene sprite appears. He’s in a better mood than most
+    show rene neutral:
+        xanchor 0.5
+        yanchor 0.5
+
+        xpos 0.75
+        ypos 0.75
+
+        xzoom -1.0
+        zoom 1.3
+    with dissolve
+
     u_re "Oh, that wasn’t so bad. Hehe."
     
-    # Rene fades and Tau appears, looking curious
+    # Tau appears, looking curious
+    show tau neutral:
+        xanchor 0.5
+        yanchor 0.5
+
+        xpos 0.25
+        ypos 0.75
+
+        xzoom -1.0
+        zoom 1.15
+    with dissolve
     
     u_t "Fabric… !!!"
     

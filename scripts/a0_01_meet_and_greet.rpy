@@ -10,79 +10,148 @@ init python:
 
 
 # Player can click on each character sprite to get an introductory dialogue
+# Define zooms
+transform meet_and_greet_sprite_zoom:
+    zoom 0.75
+
+transform meet_and_greet_tau_zoom_2:
+    zoom 0.5
+
+transform meet_and_greet_mother_zoom:
+    zoom 0.3
+
 screen meet_and_greet():
     # Tau
     imagebutton:
-        xanchor 0.5
-        yanchor 0.5
-        xpos 0.25
-        ypos 0.25
-        idle "full_body.png"
-        hover "full_body.png"
         if (not met_tau):
-             action Jump("meet_and_greet.meet_tau")
+            at meet_and_greet_sprite_zoom
+        else:
+            at meet_and_greet_tau_zoom_2
+
+        xanchor 0.5
+        yanchor 1.0
+
+        if (not met_tau):
+            xpos 0.25
+            ypos 0.9
+        else:
+            xpos 0.925
+            ypos 0.8
+
+        idle "tau neutral.png"
+        hover "tau neutral.png"
+
+        if (not met_tau):
+             action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.meet_tau")
+                ]
         elif (met_tau == 1):
-            action Jump("meet_and_greet.greet_tau")
+            action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.greet_tau")
+                ]
         else:
             action Jump("meet_and_greet.greet_tau_2")
 
     # Sylvia
     imagebutton:
+        at meet_and_greet_sprite_zoom
+
         xanchor 0.5
-        yanchor 0.5
-        xpos 0.5
-        ypos 0.25
-        idle "full_body.png"
-        hover "full_body.png"
+        yanchor 1.0
+
+        xpos 0.4
+        ypos 0.9
+
+        idle "sylvia neutral.png"
+        hover "sylvia neutral.png"
+
         if (not met_sylvia):
-             action Jump("meet_and_greet.meet_sylvia")
+             action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.meet_sylvia")
+                ]
         elif (met_sylvia == 1):
-            action Jump("meet_and_greet.greet_sylvia")
+            action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.greet_sylvia")
+                ]
         else:
             action Jump("meet_and_greet.greet_sylvia_2")
 
     # Rudy
     imagebutton:
+        at meet_and_greet_sprite_zoom
+
         xanchor 0.5
-        yanchor 0.5
-        xpos 0.5
-        ypos 0.75
-        idle "full_body.png"
-        hover "full_body.png"
+        yanchor 1.0
+
+        xpos 0.6
+        ypos 0.9
+
+        idle "rudy neutral.png"
+        hover "rudy neutral.png"
         if (not met_rudy):
-             action Jump("meet_and_greet.meet_rudy")
+             action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.meet_rudy")
+                ]
         elif (met_rudy == 1):
-            action Jump("meet_and_greet.greet_rudy")
+            action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.greet_rudy")
+                ]
         else:
             action Jump("meet_and_greet.greet_rudy_2")
 
     # Rene
-    # imagebutton:
-    #     xanchor 0.5
-    #     yanchor 0.5
-    #     xpos 0.25
-    #     ypos 0.75
-    #     idle "full_body.png"
-    #     hover "full_body.png"
-    #     if (not met_rene):
-    #          action Jump("meet_and_greet.meet_rene")
-    #     elif (met_rene == 1):
-    #         action Jump("meet_and_greet.greet_rene")
-    #     else:
-    #         action Jump("meet_and_greet.greet_rene_2")
+    imagebutton:
+        at meet_and_greet_sprite_zoom
+
+        xanchor 0.5
+        yanchor 1.0
+
+        xpos 0.8
+        ypos 0.9
+
+        idle "rene neutral.png"
+        hover "rene neutral.png"
+        if (not met_rene):
+             action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.meet_rene")
+                ]
+        elif (met_rene == 1):
+            action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.greet_rene")
+                ]
+        else:
+            action Jump("meet_and_greet.greet_rene_2")
 
     # Mother
     imagebutton:
+        at meet_and_greet_mother_zoom
+
         xanchor 0.5
-        yanchor 0.5
+        yanchor 1.0
+
         xpos 0.75
-        ypos 0.75
-        idle "full_body.png"
-        hover "full_body.png"
+        ypos 0.3
+
+        idle "mother neutral.png"
+        hover "mother neutral.png"
         if (not seen_mother):
-             action Jump("meet_and_greet.check_mother")
+             action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.check_mother")
+                ]
         elif (seen_mother == 1):
-            action Jump("meet_and_greet.check_mother_2")
+            action [
+                Hide(screen="meet_and_greet", transition=fade),
+                Jump("meet_and_greet.check_mother_2")
+                ]
         else:
             action Jump("meet_and_greet.check_mother_3")
 
@@ -91,23 +160,25 @@ screen meet_and_greet():
 define meet_and_greet_fade = Fade(1, 0, 1)
 label meet_and_greet:
     # Go to mother's introduction if all have been met
-    if (met_rudy > 1 and met_tau > 1 and met_sylvia > 1):
+    if (met_rudy > 1 and met_tau > 1 and met_sylvia > 1 and met_rene > 1):
         stop music fadeout 2.0
-        
+
         jump mother_introduction # a0_02
 
     scene bg central_area
+    with fade
+    
+    show screen meet_and_greet
 
     pause 0.5
     e "{i}Who should I talk with?{/i}"
-    pause 0.5
-
-    call screen meet_and_greet
-    with meet_and_greet_fade
 
 
 # Tau introduction
 label .meet_tau:
+    show tau neutral
+    with dissolve
+
     e "Hi! It’s nice to meet you."
     
     u_t "…"
@@ -118,18 +189,49 @@ label .meet_tau:
     
     e "What’s your name?"
     
+
+    # Tau looks confused (rotation animation)
+    show tau neutral:
+        subpixel True 
+        rotate 0.0 
+        linear 0.13 rotate 13.0 
+    with Pause(0.23)
+    show tau neutral:
+        rotate 13.0 
     u_t "Nooo… menclature?"
-    
-    # Tau looks confused
     
     e "Your name? What should we call you?"
     
+    
+    # Tau rotates back to neutral
+    show tau neutral:
+        subpixel True 
+        rotate 13.0 
+        linear 0.23 rotate 0.0 
+    with Pause(0.33)
+    show tau neutral:
+        rotate 0.0 
     u_t "1.618… 1.695…"
     
+    "..."
+    
     # Tau looks intrigued by something. A little ‘ding’ plays
-    
+    play sound "audio/ding.ogg"
+    show tau neutral:
+        subpixel True 
+        zoom 1.0 matrixcolor InvertMatrix(0.0)*ContrastMatrix(1.0)*SaturationMatrix(1.0)*BrightnessMatrix(0.0)*HueMatrix(0.0) 
+        linear 0.10 zoom 1.03 matrixcolor InvertMatrix(0.0)*ContrastMatrix(1.0)*SaturationMatrix(1.0)*BrightnessMatrix(0.3)*HueMatrix(0.0) 
+        linear 0.10 zoom 1.0 matrixcolor InvertMatrix(0.0)*ContrastMatrix(1.0)*SaturationMatrix(1.0)*BrightnessMatrix(0.0)*HueMatrix(0.0) 
+    with Pause(0.30)
+    show tau neutral:
+        zoom 1.0 matrixcolor InvertMatrix(0.0)*ContrastMatrix(1.0)*SaturationMatrix(1.0)*BrightnessMatrix(0.0)*HueMatrix(0.0) 
     u_t "Oh! Hehe…"
-    
+
+    pause 0.25
+
+    hide tau
+    with dissolve
+
     # Tau’s sprite fades and footsteps play
     
     # A few taps of finger on glass
@@ -144,6 +246,9 @@ label .meet_tau:
 
 # Tau follow up 1
 label .greet_tau:
+    show tau neutral
+    with fade
+
     e "{i}Are they playing with the water…?{/i}"
     
     e "Hi again! Did you find out anything about the tubes?"
@@ -184,6 +289,9 @@ label .greet_tau_2:
 
 # Rudy introduction
 label .meet_rudy:
+    show rudy neutral
+    with fade
+
     e "It sounds to me like you know these people."
     
     e "Would you please explain?"
@@ -205,6 +313,9 @@ label .meet_rudy:
 
 # Rudy follow up 1
 label .greet_rudy:
+    show rudy neutral
+    with fade
+
     u_ru "…"
     
     u_ru "… Have you realized it yet?"
@@ -227,9 +338,11 @@ label .greet_rudy_2:
     jump meet_and_greet
 
 
-
 # Sylvia introduction
 label .meet_sylvia:
+    show sylvia neutral
+    with fade
+
     e "{i}She’s so elegant…{/i}"
     
     e "Hello!"
@@ -259,6 +372,9 @@ label .meet_sylvia:
 
 # Sylvia follow up 1
 label .greet_sylvia:
+    show sylvia neutral
+    with fade
+
     e "{i}I don’t wanna pry, but I’m too curious…{/i}"
     
     e "What’s your hunch? Maybe I can help you figure things out."
@@ -290,6 +406,70 @@ label .greet_sylvia_2:
 
     jump meet_and_greet
 
+
+# Rene introduction
+label .meet_rene:
+    show rene neutral
+    with fade
+
+    e "{i}This guy looks just like the first one I met. Are they siblings?{/i}"
+    
+    u_re "Hey Eva, how are you doing?"
+    
+    e "Wait, how do you know my name?!"
+    
+    u_re "The same reason I know your favorite food is plain bread, silly!"
+    
+    e "{i}Uh. That’s not quite it. I really prefer it with strawberry jam.{/i}"
+    
+    u_re "Especially with strawberry jam!"
+    
+    e "Haha, yeah. Silly me!"
+    
+    e "{i}Dear God, please help me. I don’t want anyone reading my mind but you.{/i}"
+
+    $ met_rene = 1
+
+    jump meet_and_greet
+
+
+# Second time talking to Rene
+label .greet_rene:
+    show rene neutral
+    with fade
+
+    e "{i}There is no way he can actually read my mind, right?{/i}"
+    
+    e "{i}That must’ve been a coincidence.{/i}"
+    
+    e "{i}Let me try again.{/i}"
+
+    e "Hey."
+    
+    u_re "Yo."
+    
+    e "Can you tell me what I’m thinking about right now?"
+    
+    e "{i}Seven. Seven. Seven.{/i}"
+    
+    u_re "Uhh… I don’t really know."
+    
+    e "Haha. I knew it!"
+    
+    u_re "Knew what?"
+    
+    e "Nothing…"
+
+    $ met_rene = 2
+
+    jump meet_and_greet
+
+
+# Rene follow up final
+label .greet_rene_2:
+    e "{i}CAN’T read my mind.{/i}"
+
+    jump meet_and_greet
 
 # Mother check 1
 label .check_mother:
