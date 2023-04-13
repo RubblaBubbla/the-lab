@@ -3,6 +3,9 @@
 /gui/*
 /saves/*
 /tl/*
+/audio/*.wav
 /audio/audacity/*
 /images/*.kra
 /images/*.kra~
+/images/*.blend
+/images/*.blend1
