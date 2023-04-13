@@ -20,9 +20,9 @@ label eva_opening:
 
     e "Goodnight Mom! Love you."
 
-    e "{i}Whew… it’s been quite the day. Work is fun when done together, but it’s still work!{/i}"
+    e "{i}Whew… it's been quite the day. Work is fun when done together, but it's still work!{/i}"
 
-    e "{i}At least I’ll get to enjoy the party tomorrow, too. I can’t wait!{/i}"
+    e "{i}At least I'll get to enjoy the party tomorrow, too. I can't wait!{/i}"
 
     e "{i}*Yawn…*{/i}"
 
@@ -76,7 +76,7 @@ label wake_up:
 
     e "Guh..."
 
-    e "{i}What… What’s going on?{/i}"
+    e "{i}What… What's going on?{/i}"
     
     e "{i}... Oh. I must be dreaming.{/i}"
     
@@ -92,7 +92,7 @@ label wake_up:
     
     e "..."
     
-    e "{i}Wait. If I know I’m dreaming in my dream, I can control it!{/i}"
+    e "{i}Wait. If I know I'm dreaming in my dream, I can control it!{/i}"
     
     e "{i}I want to fly out of here!{/i}"
     
@@ -109,7 +109,7 @@ label wake_up:
     
     e "Huh?"
     
-    # Rudy’s sprite fades in. He’s not happy
+    # Rudy's sprite fades in. He's not happy
     play sound "audio/ding.ogg"
     show rudy neutral:
         subpixel True
@@ -125,10 +125,10 @@ label wake_up:
         matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(-10.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
     with dissolve
     
-    e "Oh, I’m sorry! I didn’t see you there!" 
+    e "Oh, I'm sorry! I didn't see you there!" 
 
     play music "audio/hollow_wind.ogg" fadein 1.5 volume 0.8
-    u_ru "Then you’d better stay alert or make peace with the consequences."
+    u_ru "Then you'd better stay alert or make peace with the consequences."
 
     e "What do you mean?"
     
@@ -141,7 +141,7 @@ label wake_up:
     show rudy neutral:
         matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0) 
 
-    u_ru "Don’t play dumb. You know the ropes."
+    u_ru "Don't play dumb. You know the ropes."
     
     # Rudy turns away to make his point
     show rudy neutral:
@@ -196,9 +196,9 @@ label wake_up:
     
     e "{i}What an embarrassing dream…{/i}"
     
-    e "So… What’s your name?"
+    e "So… What's your name?"
     
-    u_ru "Don’t ask stupid questions like th-{p=0.4}{nw}"
+    u_ru "Don't ask stupid questions like th--{p=0.4}{nw}"
 
     # Rudy is cut off by the sound of three more airlocks opening and spilling water
     play sound "audio/airlock.ogg" volume 0.5
@@ -211,7 +211,7 @@ label wake_up:
     
     e "{i}Oh! Three more people…{/i}"
     
-    e "{i}I don’t see any more tubes here. Is this all of us?{/i}"
+    e "{i}I don't see any more tubes here. Is this all of us?{/i}"
     
     # Rudy walks off, but one last dialogue appears from him from off-screen
     
@@ -219,7 +219,7 @@ label wake_up:
     
     stop music
 
-    e "I’m not looking!"
+    e "I'm not looking!"
     
     # Shuffling noises as the screen goes dark.
     scene bg central_area
@@ -239,9 +239,9 @@ label wake_up:
         zoom 1.2
     with dissolve
 
-    u_s "Mmh. Why can’t I…?"
+    u_s "Mmh. Why can't I…?"
     
-    # Rene sprite appears. He’s in a better mood than most
+    # Rene sprite appears. He's in a better mood than most
     show rene neutral:
         xanchor 0.5
         yanchor 0.5
@@ -253,7 +253,7 @@ label wake_up:
         zoom 1.3
     with dissolve
 
-    u_re "Oh, that wasn’t so bad. Hehe."
+    u_re "Oh, that wasn't so bad. Hehe."
     
     # Tau appears, looking curious
     show tau neutral:
@@ -273,7 +273,7 @@ label wake_up:
     
     "..."
     
-    e "{i}No answer. Looks like I’m on my own for now…{/i}"
+    e "{i}No answer. Looks like I'm on my own for now…{/i}"
 
     jump meet_and_greet # a0_01
 
