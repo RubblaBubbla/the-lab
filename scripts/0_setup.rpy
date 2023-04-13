@@ -48,7 +48,7 @@ define blackout_fade = Fade(0.5, 3, 0.5)
 transform tilt(start, end, time):
     subpixel True 
     rotate start
-    linear time rotate end
+    easein time rotate end
     pause time+1
     rotate end
 
