@@ -100,7 +100,7 @@ label .speak_with_rudy:
     e "{i}Oh man. Should I ask Rudy to be my partner?{/i}"
 
     menu:
-        "Yes. Let's be partners.":
+        "Yes":
             jump .rudy_yes 
 
         "I need to think about it more.":
@@ -113,7 +113,7 @@ label .ask_rudy:
     e "Should I ask Rudy to be my partner?"
 
     menu:
-        "Will you be my partner, Rudy?":
+        "Yes":
             jump .rudy_yes 
 
         "I need to think about it more.":
@@ -137,10 +137,24 @@ label .rudy_no:
 label .speak_with_tau:
     $ spoke_with_tau = True
     
-    # Dialogue
+    e "Hey, Tau."
+    
+    t "Evaaa! Hi!"
+    
+    e "Hello!"
+    
+    e "{i}I don't know how to talk to them, they're… odd.{/i}"
+    
+    e "Do you think you can do well in the trial?"
+    
+    t "What's ‘trial'?"
+    
+    e "{i}Uh oh.{/i}"
+    
+    e "{i}They're nice, but maybe they'll need some help. Should I?{/i}"
 
     menu:
-        "Yes. Let's be partners.":
+        "Yes":
             jump .tau_yes 
 
         "I need to think about it more.":
@@ -153,7 +167,7 @@ label .ask_tau:
     e "Should I ask Tau to be my partner?"
 
     menu:
-        "Will you be my partner, Tau?":
+        "Yes":
             jump .tau_yes 
 
         "I need to think about it more.":
@@ -163,13 +177,29 @@ label .ask_tau:
 label .tau_yes:
     $ persistent.prologue_partner = "tau"
 
-    # Tau response
+    e "{i}Of course I should. And I'm sure they can help me out too, somehow!{/i}"
+    
+    e "It's just a test. Like in school."
+    
+    t "School?"
+    
+    e "Yes! The place where you go to learn literature, science, maths…"
+    
+    t "Ooooh! Home!!!"
+    
+    e "{i}They live in a school…?{/i}"
+    
+    e "Yes, like home! So… Do you wanna do it together?"
+    
+    # Tau looks confidently smug
+    
+    t "Hehe! Yes. Let's do the test in school."
 
     jump .conclude_choosing
 
 
 label .tau_no:
-    # Tau response
+    e "{i}I shouldn't underestimate them too much, that's a bit rude. I should let them choose who they want to do the trial with. I may come back to them later, though.{/i}"
 
     jump partner_choosing
 
