@@ -1,6 +1,9 @@
 init python:
     prologue_trial_score = 0
     tablet_interactable = False
+    partner_interactable = False
+
+    current_question = 0
 
     # Used to determine if current answer is correct
     is_correct = False
@@ -16,6 +19,9 @@ style tablet_question is text:
     font "VT323-Regular.ttf"
 
 
+# -----------------------------------------------------------------
+# Score displays
+# -----------------------------------------------------------------
 screen prologue_trial_score_box:
     vbox:
         xpos 0.65
@@ -34,6 +40,68 @@ screen prologue_trial_final_score_box:
         text "{=tablet_question}{size=48}Final Score: [prologue_trial_score]{/size}{/=tablet_question}"
 
 
+# -----------------------------------------------------------------
+# Partner display
+# -----------------------------------------------------------------
+transform prologue_partner_display:
+    zoom 0.8
+
+screen prologue_partner_icon:
+    imagebutton:
+        xanchor 0.5
+        yanchor 0.0
+
+        xpos 0.897
+        ypos 0.05
+
+        if (persistent.prologue_partner == "Tau"):
+            idle "tau mugshot.png" at prologue_partner_display
+        elif (persistent.prologue_partner == "Rudy"):
+            idle "rudy mugshot.png" at prologue_partner_display
+        elif (persistent.prologue_partner == "Rene"):
+            idle "rene mugshot.png" at prologue_partner_display
+        elif (persistent.prologue_partner == "Sylvia"):
+            idle "sylvia mugshot.png" at prologue_partner_display
+        else:
+            idle "tau mugshot.png" at prologue_partner_display
+
+        # Only interactable if tablet is interactable
+        if (tablet_interactable):
+            if (current_question == 1):
+                action Jump("prologue_trial.q01_assist")
+            elif (current_question == 2):
+                action Jump("prologue_trial.q02_assist")
+            elif (current_question == 3):
+                action Jump("prologue_trial.q03_assist")
+            elif (current_question == 4):
+                action Jump("prologue_trial.q04_assist")
+            elif (current_question == 5):
+                action Jump("prologue_trial.q05_assist")
+            elif (current_question == 6):
+                action Jump("prologue_trial.q06_assist")
+            elif (current_question == 7):
+                action Jump("prologue_trial.q07_assist")
+            elif (current_question == 8):
+                action Jump("prologue_trial.q08_assist")
+            else:
+                action None
+        else:
+            action None
+
+    # Border
+    vbox:
+        xanchor 0.5
+        yanchor 0.0
+
+        xpos 0.897
+        ypos 0.05
+
+        image "mugshot_border.png" at prologue_partner_display
+
+
+# -----------------------------------------------------------------
+# Question displays
+# -----------------------------------------------------------------
 screen prologue_trial_q01:
     # Question
     vbox:
@@ -43,11 +111,11 @@ screen prologue_trial_q01:
         text "{=tablet_question}1. What is missing from this ordered list?\n\t\t\t{b}7, 6, 5, ?, 3, 2,{/b}{/=tablet_question}"
     
     # Answers
-    if (tablet_interactable):
-        vbox:
-            xpos 0.3
-            ypos 0.5
+    vbox:
+        xpos 0.3
+        ypos 0.5
 
+        if (tablet_interactable):
             textbutton "{=tablet_question}A. 8{/=tablet_question}" action Jump("prologue_trial.q01_handle_answer")
         
             textbutton "{=tablet_question}B. 4{/=tablet_question}" action [SetVariable("is_correct", True), Jump("prologue_trial.q01_handle_answer")]
@@ -55,6 +123,15 @@ screen prologue_trial_q01:
             textbutton "{=tablet_question}C. 1{/=tablet_question}" action Jump("prologue_trial.q01_handle_answer")
 
             textbutton "{=tablet_question}D. 0{/=tablet_question}" action Jump("prologue_trial.q01_handle_answer")
+        
+        else:
+            textbutton "{=tablet_question}A. 8{/=tablet_question}" action None
+        
+            textbutton "{=tablet_question}B. 4{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}C. 1{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}D. 0{/=tablet_question}" action None
 
 
 screen prologue_trial_q02:
@@ -72,11 +149,11 @@ screen prologue_trial_q02:
 
     
     # Answers
-    if (tablet_interactable):
-        vbox:
-            xpos 0.3
-            ypos 0.6
+    vbox:
+        xpos 0.3
+        ypos 0.6
 
+        if (tablet_interactable):
             textbutton "{=tablet_question}A. A and C{/=tablet_question}" action Jump("prologue_trial.q02_handle_answer")
         
             textbutton "{=tablet_question}B. C and D{/=tablet_question}" action Jump("prologue_trial.q02_handle_answer")
@@ -84,6 +161,15 @@ screen prologue_trial_q02:
             textbutton "{=tablet_question}C. B and D{/=tablet_question}" action [SetVariable("is_correct", True), Jump("prologue_trial.q02_handle_answer")]
 
             textbutton "{=tablet_question}D. D and E{/=tablet_question}" action Jump("prologue_trial.q02_handle_answer")
+        
+        else:
+            textbutton "{=tablet_question}A. A and C{/=tablet_question}" action None
+        
+            textbutton "{=tablet_question}B. C and D{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}C. B and D{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}D. D and E{/=tablet_question}" action None
 
 
 screen prologue_trial_q03:
@@ -104,11 +190,11 @@ screen prologue_trial_q03:
 
     
     # Answers
-    if (tablet_interactable):
-        vbox:
-            xpos 0.3
-            ypos 0.7
+    vbox:
+        xpos 0.3
+        ypos 0.7
 
+        if (tablet_interactable):
             textbutton "{=tablet_question}A. 20:00{/=tablet_question}" action Jump("prologue_trial.q03_handle_answer")
         
             textbutton "{=tablet_question}B. 20:30{/=tablet_question}" action Jump("prologue_trial.q03_handle_answer")
@@ -116,6 +202,15 @@ screen prologue_trial_q03:
             textbutton "{=tablet_question}C. 21:00{/=tablet_question}" action [SetVariable("is_correct", True), Jump("prologue_trial.q03_handle_answer")]
 
             textbutton "{=tablet_question}D. 21:30{/=tablet_question}" action Jump("prologue_trial.q03_handle_answer")
+
+        else:
+            textbutton "{=tablet_question}A. 20:00{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}B. 20:30{/=tablet_question}" action None
+           
+            textbutton "{=tablet_question}C. 21:00{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}D. 21:30{/=tablet_question}" action None 
 
 
 screen prologue_trial_q04:
@@ -128,13 +223,13 @@ screen prologue_trial_q04:
 
     
     # Answer input (924)
-    if (tablet_interactable):
-        hbox:
-            xpos 0.3
-            ypos 0.5
+    hbox:
+        xpos 0.3
+        ypos 0.5
 
-            text "{=tablet_question}Enter number, then press Return: {/=tablet_question}"
+        text "{=tablet_question}Enter number, then press Return: {/=tablet_question}"
 
+        if (tablet_interactable):
             input:
                 length 12
                 allow "0123456789"
@@ -153,11 +248,11 @@ screen prologue_trial_q05:
 
     
     # Answers
-    if (tablet_interactable):
-        vbox:
-            xpos 0.3
-            ypos 0.5
+    vbox:
+        xpos 0.3
+        ypos 0.5
 
+        if (tablet_interactable):
             textbutton "{=tablet_question}A. Attempting an already cleared trial{/=tablet_question}" action [SetVariable("is_correct", True), Jump("prologue_trial.q05_handle_answer")]
         
             textbutton "{=tablet_question}B. Murder{/=tablet_question}" action [SetVariable("is_correct", "murder"), Jump("prologue_trial.q05_handle_answer")]
@@ -165,6 +260,15 @@ screen prologue_trial_q05:
             textbutton "{=tablet_question}C. Stealing{/=tablet_question}" action Jump("prologue_trial.q05_handle_answer")
 
             textbutton "{=tablet_question}D. Completing trials with a partner{/=tablet_question}" action Jump("prologue_trial.q05_handle_answer")
+
+        else:
+            textbutton "{=tablet_question}A. Attempting an already cleared trial{/=tablet_question}" action None
+        
+            textbutton "{=tablet_question}B. Murder{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}C. Stealing{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}D. Completing trials with a partner{/=tablet_question}" action None
 
 
 screen prologue_trial_q06:
@@ -177,11 +281,11 @@ screen prologue_trial_q06:
 
     
     # Answers
-    if (tablet_interactable):
-        vbox:
-            xpos 0.3
-            ypos 0.5
+    vbox:
+        xpos 0.3
+        ypos 0.5
 
+        if (tablet_interactable):
             textbutton "{=tablet_question}A. 3{/=tablet_question}" action Jump("prologue_trial.q06_handle_answer")
         
             textbutton "{=tablet_question}B. 4{/=tablet_question}" action [SetVariable("is_correct", True), Jump("prologue_trial.q06_handle_answer")]
@@ -189,6 +293,15 @@ screen prologue_trial_q06:
             textbutton "{=tablet_question}C. 5{/=tablet_question}" action Jump("prologue_trial.q06_handle_answer")
 
             textbutton "{=tablet_question}D. 6{/=tablet_question}" action Jump("prologue_trial.q06_handle_answer")
+
+        else:
+            textbutton "{=tablet_question}A. 3{/=tablet_question}" action None
+        
+            textbutton "{=tablet_question}B. 4{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}C. 5{/=tablet_question}" action None
+
+            textbutton "{=tablet_question}D. 6{/=tablet_question}" action None
 
 
 screen prologue_trial_q07:
@@ -201,13 +314,13 @@ screen prologue_trial_q07:
 
     
    # Answer input (ETRuReS)
-    if (tablet_interactable):
-        hbox:
-            xpos 0.3
-            ypos 0.7
+    hbox:
+        xpos 0.3
+        ypos 0.7
 
-            text "{=tablet_question}Enter (ex. TRuReSE), then press Return: {/=tablet_question}"
+        text "{=tablet_question}Enter (ex. TRuReSE), then press Return: {/=tablet_question}"
 
+        if (tablet_interactable):
             input:
                 length 7
                 allow "ETRueS"
@@ -226,13 +339,13 @@ screen prologue_trial_q08:
 
     
    # Answer input (173895)
-    if (tablet_interactable):
-        hbox:
-            xpos 0.3
-            ypos 0.75
+    hbox:
+        xpos 0.3
+        ypos 0.75
 
-            text "{=tablet_question}Enter a number, then press Return: {/=tablet_question}"
+        text "{=tablet_question}Enter a number, then press Return: {/=tablet_question}"
 
+        if (tablet_interactable):
             input:
                 length 12
                 allow "0123456789"
@@ -241,7 +354,9 @@ screen prologue_trial_q08:
                 size 24
 
 
-# Control labels
+# -----------------------------------------------------------------
+# Labels (trial start and answer handling )
+# -----------------------------------------------------------------
 label prologue_trial:
     scene tablet:
         subpixel True 
@@ -252,6 +367,7 @@ label prologue_trial:
         zoom 1.50
     with fade
 
+    show screen prologue_partner_icon
     show screen prologue_trial_score_box
 
     jump .start_test
@@ -265,7 +381,9 @@ label .start_test:
 
     e "Huh? This is pretty easy!"
 
+    $ current_question = 1
     $ tablet_interactable = True
+
     call screen prologue_trial_q01
 
 
@@ -285,6 +403,7 @@ label .q01_handle_answer:
     else:
         e "Oh, my score didn't change. I guess I got it wrong..."
 
+    $ current_question = 2
     $ tablet_interactable = True
     $ is_correct = False
 
@@ -307,6 +426,7 @@ label .q02_handle_answer:
     else:
         e "Oh, too bad... And the next one's even harder..."
 
+    $ current_question = 3
     $ tablet_interactable = True
     $ is_correct = False
 
@@ -329,6 +449,7 @@ label .q03_handle_answer:
 
     window hide
 
+    $ current_question = 4
     $ tablet_interactable = True
     $ is_correct = False
 
@@ -354,6 +475,7 @@ label .q04_handle_answer:
 
     window hide 
 
+    $ current_question = 5
     $ tablet_interactable = True
 
     call screen prologue_trial_q05
@@ -382,6 +504,7 @@ label .q05_handle_answer:
 
     window hide 
 
+    $ current_question = 6
     $ tablet_interactable = True
     $ is_correct = False
 
@@ -405,6 +528,7 @@ label .q06_handle_answer:
 
     window hide
 
+    $ current_question = 7
     $ tablet_interactable = True
     $ is_correct = False
 
@@ -430,6 +554,7 @@ label .q07_handle_answer:
 
     window hide
 
+    $ current_question = 8
     $ tablet_interactable = True
 
     $ q8_answer = renpy.call_screen("prologue_trial_q08")
@@ -444,6 +569,8 @@ label .q08_handle_answer:
 
     hide screen prologue_trial_score_box
 
+    $ current_question = 9
+
     if (q8_answer == "173895"):
         $ prologue_trial_score += 8
 
@@ -456,6 +583,7 @@ label .q08_handle_answer:
 
         e "At least it's over now."
 
+    # Segue to conclusion
     $ persistent.prologue_trial_score = prologue_trial_score
 
     e "I'll have to see how this score stacks up."
@@ -463,16 +591,104 @@ label .q08_handle_answer:
     e "But what would it mean to win if the others lose...?"
 
     hide screen prologue_trial_final_score_box
+    hide screen prologue_partner_icon
     
     jump prologue_trial_conclude
 
 
+# -----------------------------------------------------------------
+# Labels for partner assist
+# -----------------------------------------------------------------
+label .q01_assist(partner=persistent.prologue_partner):
+    $ tablet_interactable = False
+    show screen prologue_trial_q01
+
+    t "Hi!"
+    
+    $ tablet_interactable = True
+    call screen prologue_trial_q01
+
+
+label .q02_assist(partner=persistent.prologue_partner):
+    $ tablet_interactable = False
+    show screen prologue_trial_q02
+
+    t "Hi2!"
+    
+    $ tablet_interactable = True
+    call screen prologue_trial_q02
+
+
+label .q03_assist(partner=persistent.prologue_partner):
+    $ tablet_interactable = False
+    show screen prologue_trial_q03
+
+    t "Hi3!"
+    
+    $ tablet_interactable = True
+    call screen prologue_trial_q03
+
+
+label .q04_assist(partner=persistent.prologue_partner):
+    $ tablet_interactable = False
+    show screen prologue_trial_q04
+
+    t "Hi4!"
+    
+    $ tablet_interactable = True
+    call screen prologue_trial_q04
+    jump .q04_handle_answer
+
+
+label .q05_assist(partner=persistent.prologue_partner):
+    $ tablet_interactable = False
+    show screen prologue_trial_q05
+
+    t "Hi5!"
+    
+    $ tablet_interactable = True
+    call screen prologue_trial_q05
+
+
+label .q06_assist(partner=persistent.prologue_partner):
+    $ tablet_interactable = False
+    show screen prologue_trial_q06
+
+    t "Hi6!"
+    
+    $ tablet_interactable = True
+    call screen prologue_trial_q06
+
+
+label .q07_assist(partner=persistent.prologue_partner):
+    $ tablet_interactable = False
+    show screen prologue_trial_q07
+
+    t "Hi7!"
+    
+    $ tablet_interactable = True
+    call screen prologue_trial_q07
+    jump .q07_handle_answer
+
+
+label .q08_assist(partner=persistent.prologue_partner):
+    $ tablet_interactable = False
+    show screen prologue_trial_q08
+
+    t "Hi8!"
+    
+    $ tablet_interactable = True
+    call screen prologue_trial_q08
+    jump .q08_handle_answer
+
+
+# -----------------------------------------------------------------
+# Trial conclusion
+# -----------------------------------------------------------------
 label prologue_trial_conclude:
     scene bg central_area
     with fade
 
     e "Conclude."
-
-    # WHY DOES IT GO BACK TO Q6_HANDLE_ANSWER HERE???
 
     return
