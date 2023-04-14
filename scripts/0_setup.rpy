@@ -11,6 +11,7 @@ define gui.interface_text_font =    "TitilliumWeb-Regular.ttf"
 #--------------------------------------------------------------------
 init python:
     persistent.prologue_partner = None
+    persistent.prologue_trial_score = 0
 
 
 #--------------------------------------------------------------------
